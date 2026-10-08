@@ -7,37 +7,51 @@
         <!-- Banner Superior -->
         <Border Grid.Row="0" Background="#0C3B7C" Padding="15">
             <DockPanel>
-                <TextBlock Text="Preprocesamiento - Escala de Grises" 
+                <TextBlock Text="Módulo de Preprocesamiento de Imágenes" 
                            Foreground="White" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
-                <TextBlock x:Name="TxtStatus" Text="Estado: Esperando acción" 
+                <TextBlock x:Name="TxtStatus" Text="Estado: Listo" 
                            Foreground="#93C5FD" FontSize="13" HorizontalAlignment="Right" VerticalAlignment="Center"/>
             </DockPanel>
         </Border>
 
-        <!-- Contenido Central -->
+        <!-- Imágenes -->
         <Grid Grid.Row="1" ColumnDefinitions="*, *" Margin="15">
             <Border Grid.Column="0" Background="#1E293B" CornerRadius="8" Margin="0,0,10,0" ClipToBounds="True">
                 <Grid RowDefinitions="Auto, *">
-                    <TextBlock Text="Original (RGB)" Foreground="White" Background="#334155" Padding="8" FontWeight="SemiBold"/>
+                    <TextBlock Text="Imagen Original" Foreground="White" Background="#334155" Padding="8" FontWeight="SemiBold"/>
                     <Image Grid.Row="1" x:Name="ImgOriginal" Stretch="Uniform" Margin="5"/>
                 </Grid>
             </Border>
 
             <Border Grid.Column="1" Background="#1E293B" CornerRadius="8" Margin="10,0,0,0" ClipToBounds="True">
                 <Grid RowDefinitions="Auto, *">
-                    <TextBlock Text="Procesada (Escala de Grises)" Foreground="White" Background="#334155" Padding="8" FontWeight="SemiBold"/>
+                    <TextBlock Text="Vista Previa Procesada" Foreground="White" Background="#334155" Padding="8" FontWeight="SemiBold"/>
                     <Image Grid.Row="1" x:Name="ImgProcessed" Stretch="Uniform" Margin="5"/>
                 </Grid>
             </Border>
         </Grid>
 
-        <!-- Panel de Acciones -->
         <Border Grid.Row="2" Background="White" Padding="15" BoxShadow="0 -2 8 0 #10000000">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
-                <Button Content="Procesar Grises" Click="BtnProcess_Click" 
-                        Background="#2563EB" Foreground="White" FontWeight="Bold" Height="38" Padding="15,0"/>
-                <Button Content="Volver a Captura" Click="BtnBack_Click" 
-                        Background="#64748B" Foreground="White" Height="38" Padding="15,0"/>
+            <StackPanel Spacing="10">
+                <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button Content="Separar Capas" Click="BtnSepararCapas_Click" Margin="3" Background="#8B5CF6" Foreground="White"/>
+                    <Button Content="Gris" Click="BtnGris_Click" Margin="3" Background="#2563EB" Foreground="White"/>
+                    <Button Content="HSV" Click="BtnHsv_Click" Margin="3" Background="#2563EB" Foreground="White"/>
+                    <Button Content="Destacar Rojo" Click="BtnDestacarRojo_Click" Margin="3" Background="#DC2626" Foreground="White"/>
+                    <Button Content="Destacar Verde" Click="BtnDestacarVerde_Click" Margin="3" Background="#16A34A" Foreground="White"/>
+                    <Button Content="Destacar Azul" Click="BtnDestacarAzul_Click" Margin="3" Background="#0284C7" Foreground="White"/>
+                    <Button Content="Negativa" Click="BtnNegativa_Click" Margin="3" Background="#475569" Foreground="White"/>
+                    <Button Content="Guardar BD" Click="BtnGuardar_Click" Margin="3" Background="#059669" Foreground="White"/>
+                    <Button Content="Volver" Click="BtnBack_Click" Margin="3" Background="#64748B" Foreground="White"/>
+                </WrapPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10" Margin="0,5,0,0">
+                    <TextBlock Text="Ajuste Gamma (0 a 2):" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                    <Slider x:Name="SliderGamma" Minimum="0.0" Maximum="2.0" Value="1.0" Width="220" 
+                            SmallChange="0.1" LargeChange="0.2" ValueChanged="SliderGamma_ValueChanged"/>
+                    <TextBlock x:Name="TxtGammaValue" Text="{Binding ElementName=SliderGamma, Path=Value, StringFormat={}{0:F2}}" 
+                               VerticalAlignment="Center" FontWeight="Bold" Width="40"/>
+                </StackPanel>
             </StackPanel>
         </Border>
     </Grid>

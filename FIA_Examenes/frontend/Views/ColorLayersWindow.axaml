@@ -1,0 +1,75 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="frontend.Views.ColorLayersWindow"
+        Title="Descomposición de Capas de Color"
+        Width="1000" Height="700"
+        WindowStartupLocation="CenterOwner"
+        Background="#0F172A">
+
+    <Grid RowDefinitions="Auto, *">
+        <!-- Encabezado -->
+        <Border Grid.Row="0" Background="#1E293B" Padding="15">
+            <DockPanel>
+                <TextBlock Text="Capas de Color (Primarias y Secundarias)" 
+                           Foreground="White" FontSize="18" FontWeight="Bold" VerticalAlignment="Center"/>
+                <TextBlock x:Name="TxtStatus" Text="Cargando capas..." 
+                           Foreground="#38BDF8" FontSize="13" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            </DockPanel>
+        </Border>
+
+        <!-- Cuadrícula de Capas -->
+        <ScrollViewer Grid.Row="1" Padding="15">
+            <UniformGrid Columns="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                
+                <!-- Capa Roja -->
+                <Border Background="#1E293B" CornerRadius="8" Margin="8" Padding="8" ClipToBounds="True">
+                    <Grid RowDefinitions="Auto, *">
+                        <TextBlock Text="Capa Roja (R)" Foreground="#EF4444" FontWeight="Bold" Margin="0,0,0,5"/>
+                        <Image Grid.Row="1" x:Name="ImgRojo" Stretch="Uniform" Height="200"/>
+                    </Grid>
+                </Border>
+
+                <!-- Capa Verde -->
+                <Border Background="#1E293B" CornerRadius="8" Margin="8" Padding="8" ClipToBounds="True">
+                    <Grid RowDefinitions="Auto, *">
+                        <TextBlock Text="Capa Verde (G)" Foreground="#22C55E" FontWeight="Bold" Margin="0,0,0,5"/>
+                        <Image Grid.Row="1" x:Name="ImgVerde" Stretch="Uniform" Height="200"/>
+                    </Grid>
+                </Border>
+
+                <!-- Capa Azul -->
+                <Border Background="#1E293B" CornerRadius="8" Margin="8" Padding="8" ClipToBounds="True">
+                    <Grid RowDefinitions="Auto, *">
+                        <TextBlock Text="Capa Azul (B)" Foreground="#3B82F6" FontWeight="Bold" Margin="0,0,0,5"/>
+                        <Image Grid.Row="1" x:Name="ImgAzul" Stretch="Uniform" Height="200"/>
+                    </Grid>
+                </Border>
+
+                <!-- Capa Cian -->
+                <Border Background="#1E293B" CornerRadius="8" Margin="8" Padding="8" ClipToBounds="True">
+                    <Grid RowDefinitions="Auto, *">
+                        <TextBlock Text="Capa Cian (C)" Foreground="#06B6D4" FontWeight="Bold" Margin="0,0,0,5"/>
+                        <Image Grid.Row="1" x:Name="ImgCian" Stretch="Uniform" Height="200"/>
+                    </Grid>
+                </Border>
+
+                <!-- Capa Magenta -->
+                <Border Background="#1E293B" CornerRadius="8" Margin="8" Padding="8" ClipToBounds="True">
+                    <Grid RowDefinitions="Auto, *">
+                        <TextBlock Text="Capa Magenta (M)" Foreground="#EC4899" FontWeight="Bold" Margin="0,0,0,5"/>
+                        <Image Grid.Row="1" x:Name="ImgMagenta" Stretch="Uniform" Height="200"/>
+                    </Grid>
+                </Border>
+
+                <!-- Capa Amarillo -->
+                <Border Background="#1E293B" CornerRadius="8" Margin="8" Padding="8" ClipToBounds="True">
+                    <Grid RowDefinitions="Auto, *">
+                        <TextBlock Text="Capa Amarillo (Y)" Foreground="#EAB308" FontWeight="Bold" Margin="0,0,0,5"/>
+                        <Image Grid.Row="1" x:Name="ImgAmarillo" Stretch="Uniform" Height="200"/>
+                    </Grid>
+                </Border>
+
+            </UniformGrid>
+        </ScrollViewer>
+    </Grid>
+</Window>

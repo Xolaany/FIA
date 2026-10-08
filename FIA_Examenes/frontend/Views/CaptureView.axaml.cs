@@ -102,7 +102,7 @@ namespace frontend.Views
                         byte[] frameBytes = new byte[length];
                         Array.Copy(data, start, frameBytes, 0, length);
 
-                        // Remover los bytes del frame ya procesado de la lista para no saturar la memoria
+                        // Remover los bytes del frame ya procesado
                         rawData.RemoveRange(0, end + 2);
 
                         try
@@ -118,14 +118,13 @@ namespace frontend.Views
                         }
                         catch
                         {
-                            // Frame incompleto o corrupto, se omite silenciosamente
                         }
                     }
                 }
             }
             catch (OperationCanceledException)
             {
-                // Transmisión cancelada normalmente
+                // Transmisión cancelada
             }
             catch (Exception)
             {
@@ -179,7 +178,7 @@ namespace frontend.Views
                 
                 DirectoryInfo? currentDir = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
         
-                // Sube en el árbol de directorios hasta salir de la carpeta bin y frontend
+                // Sube en el árbol de directorios hasta la raíz
                 while (currentDir != null && (currentDir.Name == "bin" || currentDir.Name == "Debug" || currentDir.Name == "Release" || currentDir.Name.StartsWith("net") || currentDir.Name == "frontend"))
                 {
                     currentDir = currentDir.Parent;
@@ -219,10 +218,36 @@ namespace frontend.Views
             }
         }
 
-        private void BtnSaveToDb_Click(object? sender, RoutedEventArgs e)
+        private async void BtnSaveToDb_Click(object? sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(_selectedFilePath)) return;
-            TxtStatus.Text = "Estado: Guardado en Base de Datos";
+            if (!UserSession.IsLoggedIn)
+            {
+                TxtStatus.Text = "Estado: Debes iniciar sesión primero";
+                return;
+            }
+
+            if (string.IsNullOrEmpty(_selectedFilePath) || !File.Exists(_selectedFilePath))
+            {
+                TxtStatus.Text = "Estado: Selecciona una imagen válida primero";
+                return;
+            }
+
+            TxtStatus.Text = "Estado: Guardando imagen en Base de Datos...";
+
+            // Se obtiene el ID del usuario en sesión activa
+            int userId = UserSession.IdUsuario; 
+            string fileName = Path.GetFileName(_selectedFilePath);
+
+            int idImagen = await ApiService.SaveOriginalImageAsync(userId, fileName, _selectedFilePath);
+
+            if (idImagen > 0)
+            {
+                TxtStatus.Text = $"Estado: Imagen guardada exitosamente en BD (ID: {idImagen})";
+            }
+            else
+            {
+                TxtStatus.Text = "Estado: Error al guardar la imagen en BD";
+            }
         }
 
         private void BtnOpenPreprocessing_Click(object? sender, RoutedEventArgs e)
