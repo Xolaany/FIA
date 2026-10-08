@@ -1,15 +1,13 @@
-<Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        x:Class="frontend.Views.LoginWindow"
-        Title="Acceso al Sistema - Visión Artificial"
-        Width="420" Height="550"
-        WindowStartupLocation="CenterScreen"
-        Background="#F4F6F9">
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="frontend.Views.LoginWindow"
+             Width="420" Height="550"
+             Background="#F4F6F9">
 
     <Grid RowDefinitions="Auto, *">
         <Border Grid.Row="0" Background="#0C3B7C" Padding="15">
             <StackPanel HorizontalAlignment="Center">
-                <TextBlock Text="SISTEMA DE VISIÓN ARTIFICIAL" Foreground="White" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center"/>
+                <TextBlock Text="Examen 1er Parcial" Foreground="White" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center"/>
                 <TextBlock Text="Universidad Politécnica de Querétaro" Foreground="#D1E3FF" FontSize="12" HorizontalAlignment="Center" Margin="0,4,0,0"/>
             </StackPanel>
         </Border>
@@ -19,10 +17,12 @@
                 <TextBlock Text="Iniciar Sesión" FontSize="22" FontWeight="SemiBold" Foreground="#1E293B" HorizontalAlignment="Center" Margin="0,0,0,10"/>
                 
                 <TextBlock Text="Usuario:" Foreground="#475569" FontWeight="Medium"/>
-                <TextBox x:Name="TxtUser" Watermark="Ingrese su usuario" Height="40" VerticalContentAlignment="Center"/>
+                <!-- Cambio de Watermark a PlaceholderText -->
+                <TextBox x:Name="TxtUser" PlaceholderText="Ingrese su usuario" Height="40" VerticalContentAlignment="Center"/>
 
                 <TextBlock Text="Contraseña:" Foreground="#475569" FontWeight="Medium"/>
-                <TextBox x:Name="TxtPassword" Watermark="••••••••" PasswordChar="•" Height="40" VerticalContentAlignment="Center"/>
+                <!-- Cambio de Watermark a PlaceholderText -->
+                <TextBox x:Name="TxtPassword" PlaceholderText="••••••••" PasswordChar="•" Height="40" VerticalContentAlignment="Center"/>
 
                 <Button Content="ACCEDER" Click="BtnLogin_Click" Background="#0C3B7C" Foreground="White" 
                         Height="42" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" 
@@ -60,4 +60,4 @@
             </ScrollViewer>
         </Grid>
     </Grid>
-</Window>
+</UserControl>

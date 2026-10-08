@@ -1,6 +1,6 @@
-create database vision_artificial;
+create database vision_artificial_2;
 
-\c vision_artificial;
+\c vision_artificial_2;
 
 create table usuarios (
     id_usuario serial primary key,
@@ -20,27 +20,10 @@ create table imagenes (
     fecha timestamp default current_timestamp,
     tipo varchar(20) default 'original',
     imagen_original bytea,
+    matriz_pixeles jsonb not null, -- Reemplaza a la tabla 'pixeles'
     constraint fk_imagen_usuario
         foreign key (id_usuario)
         references usuarios(id_usuario)
-);
-
-create table pixeles (
-    id_pixel serial primary key,
-    id_imagen integer not null,
-    posicion integer not null,
-    rojo smallint not null,
-    verde smallint not null,
-    azul smallint not null,
-    constraint fk_pixel_imagen
-        foreign key (id_imagen)
-        references imagenes(id_imagen),
-    constraint chk_rojo
-        check (rojo between 0 and 255),
-    constraint chk_verde
-        check (verde between 0 and 255),
-    constraint chk_azul
-        check (azul between 0 and 255)
 );
 
 create table preprocesamientos (
@@ -78,25 +61,8 @@ create table imagenes_preprocesadas (
     alto integer not null,
     fecha timestamp default current_timestamp,
     imagen bytea,
+    matriz_pixeles jsonb not null, -- Reemplaza a la tabla 'pixeles_preprocesados'
     constraint fk_imagen_preprocesada
         foreign key (id_preprocesamiento)
         references preprocesamientos(id_preprocesamiento)
-);
-
-create table pixeles_preprocesados (
-    id_pixel_preprocesado serial primary key,
-    id_imagen_preprocesada integer not null,
-    posicion integer not null,
-    rojo smallint not null,
-    verde smallint not null,
-    azul smallint not null,
-    constraint fk_pixel_preprocesado
-        foreign key (id_imagen_preprocesada)
-        references imagenes_preprocesadas(id_imagen_preprocesada),
-    constraint chk_rojo_preprocesado
-        check (rojo between 0 and 255),
-    constraint chk_verde_preprocesado
-        check (verde between 0 and 255),
-    constraint chk_azul_preprocesado
-        check (azul between 0 and 255)
 );

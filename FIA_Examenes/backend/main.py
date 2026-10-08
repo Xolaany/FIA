@@ -1,34 +1,23 @@
-from fastapi import FastAPI, UploadFile, File, HTTPException
-from fastapi.responses import Response
+from fastapi import FastAPI
 from API import router as api_router
-import cv2
-import numpy as np
-import io
+from bd import BaseDatos
 
 app = FastAPI(title="ExamenAPI")
 
+
+@app.on_event("startup")
+def startup_event():
+    # Inicializa la conexión con PostgreSQL
+    BaseDatos.conectar()
+
+@app.on_event("shutdown")
+def shutdown_event():
+    # Cierra la conexión de forma limpia
+    BaseDatos.cerrar_conexion()
+
+# Incluir todas las rutas definidas en API.py
 app.include_router(api_router)
 
-@app.post("/img-procesada/")
-async def img_procesada(file: UploadFile = File(...)):
-    contenido = await file.read()
-    nparr = np.frombuffer(contenido, np.uint8)
-    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-
-    if img is None:
-        raise HTTPException(status_code=400, detail="Formato de imagen inválido")
-
-    b = img[:, :, 0].astype(np.float32)
-    g = img[:, :, 1].astype(np.float32)
-    r = img[:, :, 2].astype(np.float32)
-
-    gray_array = 0.299 * r + 0.587 * g + 0.114 * b
-
-    gray_custom = np.clip(gray_array, 0, 255).astype(np.uint8)
-
-    _, empaquetar_img = cv2.imencode('.png', gray_custom)
-
-    return Response(content=empaquetar_img.tobytes(), media_type='image/png')
 
 if __name__ == "__main__":
     import uvicorn

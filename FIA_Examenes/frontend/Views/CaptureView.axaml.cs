@@ -127,7 +127,7 @@ namespace frontend.Views
             {
                 // Transmisión cancelada normalmente
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 await Dispatcher.UIThread.InvokeAsync(() =>
                 {
@@ -174,7 +174,49 @@ namespace frontend.Views
 
         private void BtnTakePhoto_Click(object? sender, RoutedEventArgs e)
         {
-            
+            if (PictureBox.Source is Bitmap currentBitmap)
+            {
+                
+                DirectoryInfo? currentDir = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
+        
+                // Sube en el árbol de directorios hasta salir de la carpeta bin y frontend
+                while (currentDir != null && (currentDir.Name == "bin" || currentDir.Name == "Debug" || currentDir.Name == "Release" || currentDir.Name.StartsWith("net") || currentDir.Name == "frontend"))
+                {
+                    currentDir = currentDir.Parent;
+                }
+
+                string rootPath = currentDir?.FullName ?? Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../../"));
+                
+                string directory = Path.Combine(rootPath, "captures");
+                Directory.CreateDirectory(directory);
+
+                string filename = $"capture_{DateTime.Now:yyyyMMdd_HHmmss}.png";
+                _selectedFilePath = Path.Combine(directory, filename);
+
+                //Guardar la imagen
+                using (var fileStream = File.Create(_selectedFilePath))
+                {
+                    currentBitmap.Save(fileStream);
+                }
+                //Detener la cámara
+                _cts?.Cancel();
+                _cts?.Dispose();
+                _cts = null;
+
+                BtnStopCamera.IsVisible = false;
+                BtnStartCamera.IsVisible = true;
+
+                //Cargar la imagen
+                using var stream = File.OpenRead(_selectedFilePath);
+                PictureBox.Source = new Bitmap(stream);
+                TxtPlaceholder.IsVisible = false;
+
+                TxtStatus.Text = $"Estado: Captura lista ({filename})";
+            }
+            else
+            {
+                TxtStatus.Text = "Estado: Enciende la cámara para capturar foto";
+            }
         }
 
         private void BtnSaveToDb_Click(object? sender, RoutedEventArgs e)

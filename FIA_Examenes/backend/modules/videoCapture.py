@@ -1,8 +1,11 @@
+from datetime import datetime
 from fastapi.responses import StreamingResponse
 from fastapi import Request
 import cv2
 import asyncio
+import os
 
+#Funcion Generar Video(frames/fotogramas)
 async def videoGen(request: Request):
     img = cv2.VideoCapture(0, cv2.CAP_V4L2)
     try:
@@ -30,7 +33,7 @@ async def videoGen(request: Request):
         img.release()
         cv2.destroyAllWindows()
 
+#Funcion Enviar video
 def videoPost(request: Request):
     return StreamingResponse(videoGen(request), media_type="multipart/x-mixed-replace; boundary=frame")
 
-#def frameSave(request: Request):
