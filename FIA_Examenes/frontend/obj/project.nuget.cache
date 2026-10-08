@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gPY10ESV32Y=",
+  "dgSpecHash": "TaEImga71EA=",
   "success": true,
-  "projectFilePath": "/home/tonyg/Escuela/7moCuatrimestre/FIA_Examenes/frontend/frontend.csproj",
+  "projectFilePath": "/home/tonyg/Repos/Examen_FIA_1P/FIA_Examenes/frontend/frontend.csproj",
   "expectedPackageFiles": [
     "/home/tonyg/.nuget/packages/avalonia/12.1.3/avalonia.12.1.3.nupkg.sha512",
     "/home/tonyg/.nuget/packages/avalonia.angle.windows.natives/2.1.27548.20260419/avalonia.angle.windows.natives.2.1.27548.20260419.nupkg.sha512",

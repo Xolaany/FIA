@@ -1,0 +1,44 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="frontend.Views.PreprocessingView"
+             Background="#F1F5F9">
+
+    <Grid RowDefinitions="Auto, *, Auto">
+        <!-- Banner Superior -->
+        <Border Grid.Row="0" Background="#0C3B7C" Padding="15">
+            <DockPanel>
+                <TextBlock Text="Preprocesamiento - Escala de Grises" 
+                           Foreground="White" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
+                <TextBlock x:Name="TxtStatus" Text="Estado: Esperando acción" 
+                           Foreground="#93C5FD" FontSize="13" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            </DockPanel>
+        </Border>
+
+        <!-- Contenido Central -->
+        <Grid Grid.Row="1" ColumnDefinitions="*, *" Margin="15">
+            <Border Grid.Column="0" Background="#1E293B" CornerRadius="8" Margin="0,0,10,0" ClipToBounds="True">
+                <Grid RowDefinitions="Auto, *">
+                    <TextBlock Text="Original (RGB)" Foreground="White" Background="#334155" Padding="8" FontWeight="SemiBold"/>
+                    <Image Grid.Row="1" x:Name="ImgOriginal" Stretch="Uniform" Margin="5"/>
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="1" Background="#1E293B" CornerRadius="8" Margin="10,0,0,0" ClipToBounds="True">
+                <Grid RowDefinitions="Auto, *">
+                    <TextBlock Text="Procesada (Escala de Grises)" Foreground="White" Background="#334155" Padding="8" FontWeight="SemiBold"/>
+                    <Image Grid.Row="1" x:Name="ImgProcessed" Stretch="Uniform" Margin="5"/>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <!-- Panel de Acciones -->
+        <Border Grid.Row="2" Background="White" Padding="15" BoxShadow="0 -2 8 0 #10000000">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
+                <Button Content="Procesar Grises" Click="BtnProcess_Click" 
+                        Background="#2563EB" Foreground="White" FontWeight="Bold" Height="38" Padding="15,0"/>
+                <Button Content="Volver a Captura" Click="BtnBack_Click" 
+                        Background="#64748B" Foreground="White" Height="38" Padding="15,0"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

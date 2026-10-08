@@ -1,0 +1,63 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="frontend.Views.LoginWindow"
+        Title="Acceso al Sistema - Visión Artificial"
+        Width="420" Height="550"
+        WindowStartupLocation="CenterScreen"
+        Background="#F4F6F9">
+
+    <Grid RowDefinitions="Auto, *">
+        <Border Grid.Row="0" Background="#0C3B7C" Padding="15">
+            <StackPanel HorizontalAlignment="Center">
+                <TextBlock Text="SISTEMA DE VISIÓN ARTIFICIAL" Foreground="White" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center"/>
+                <TextBlock Text="Universidad Politécnica de Querétaro" Foreground="#D1E3FF" FontSize="12" HorizontalAlignment="Center" Margin="0,4,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Row="1" Margin="25">
+            <StackPanel x:Name="LoginPanel" VerticalAlignment="Center" Spacing="12">
+                <TextBlock Text="Iniciar Sesión" FontSize="22" FontWeight="SemiBold" Foreground="#1E293B" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                
+                <TextBlock Text="Usuario:" Foreground="#475569" FontWeight="Medium"/>
+                <TextBox x:Name="TxtUser" Watermark="Ingrese su usuario" Height="40" VerticalContentAlignment="Center"/>
+
+                <TextBlock Text="Contraseña:" Foreground="#475569" FontWeight="Medium"/>
+                <TextBox x:Name="TxtPassword" Watermark="••••••••" PasswordChar="•" Height="40" VerticalContentAlignment="Center"/>
+
+                <Button Content="ACCEDER" Click="BtnLogin_Click" Background="#0C3B7C" Foreground="White" 
+                        Height="42" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" 
+                        VerticalContentAlignment="Center" FontWeight="Bold" Margin="0,15,0,0"/>
+
+                <Button Content="¿No tienes cuenta? Regístrate aquí" Click="BtnShowRegister_Click" 
+                        Background="Transparent" Foreground="#2563EB" HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <!-- REGISTER PANEL -->
+            <ScrollViewer x:Name="RegisterPanel" IsVisible="False" VerticalScrollBarVisibility="Auto">
+                <StackPanel Spacing="10">
+                    <TextBlock Text="Nuevo Registro" FontSize="20" FontWeight="SemiBold" Foreground="#1E293B" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+
+                    <TextBlock Text="Nombre:" Foreground="#475569"/>
+                    <TextBox x:Name="RegNombre" Height="36" VerticalContentAlignment="Center"/>
+
+                    <TextBlock Text="Apellido Paterno:" Foreground="#475569"/>
+                    <TextBox x:Name="RegAppPaterno" Height="36" VerticalContentAlignment="Center"/>
+
+                    <TextBlock Text="Apellido Materno:" Foreground="#475569"/>
+                    <TextBox x:Name="RegAppMaterno" Height="36" VerticalContentAlignment="Center"/>
+
+                    <TextBlock Text="Usuario:" Foreground="#475569"/>
+                    <TextBox x:Name="RegUsuario" Height="36" VerticalContentAlignment="Center"/>
+
+                    <TextBlock Text="Contraseña:" Foreground="#475569"/>
+                    <TextBox x:Name="RegPassword" PasswordChar="•" Height="36" VerticalContentAlignment="Center"/>
+
+                    <Button Content="GUARDAR Y REGISTRAR" Click="BtnSaveRegister_Click" Background="#16A34A" Foreground="White" 
+                            Height="40" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" Margin="0,10,0,0"/>
+
+                    <Button Content="Volver al Login" Click="BtnBackToLogin_Click" Background="Transparent" Foreground="#64748B" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Window>

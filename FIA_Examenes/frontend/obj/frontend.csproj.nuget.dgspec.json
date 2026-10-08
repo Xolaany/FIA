@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/tonyg/Escuela/7moCuatrimestre/FIA_Examenes/frontend/frontend.csproj": {}
+    "/home/tonyg/Repos/Examen_FIA_1P/FIA_Examenes/frontend/frontend.csproj": {}
   },
   "projects": {
-    "/home/tonyg/Escuela/7moCuatrimestre/FIA_Examenes/frontend/frontend.csproj": {
+    "/home/tonyg/Repos/Examen_FIA_1P/FIA_Examenes/frontend/frontend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/tonyg/Escuela/7moCuatrimestre/FIA_Examenes/frontend/frontend.csproj",
+        "projectUniqueName": "/home/tonyg/Repos/Examen_FIA_1P/FIA_Examenes/frontend/frontend.csproj",
         "projectName": "frontend",
-        "projectPath": "/home/tonyg/Escuela/7moCuatrimestre/FIA_Examenes/frontend/frontend.csproj",
+        "projectPath": "/home/tonyg/Repos/Examen_FIA_1P/FIA_Examenes/frontend/frontend.csproj",
         "packagesPath": "/home/tonyg/.nuget/packages/",
-        "outputPath": "/home/tonyg/Escuela/7moCuatrimestre/FIA_Examenes/frontend/obj/",
+        "outputPath": "/home/tonyg/Repos/Examen_FIA_1P/FIA_Examenes/frontend/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/tonyg/.nuget/NuGet/NuGet.Config"
